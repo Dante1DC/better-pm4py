@@ -1,0 +1,14 @@
+def match_pm4py_type(match_target, actions):
+    """
+    This function matches a dictionary of lambda functions to the value of match_target. 
+    This is for condensing the nearly identical methods in the pm4py with different submodule hierarchies.
+    """
+    match match_target:
+        case "pt" | "process_tree" | "ptml":
+            actions.get("pt")()
+        case "dfg" | "directly_follows_graph":
+            actions.get("dfg")()
+        case "bpmn" | "bpmn_diagram":
+            actions.get("bpmn")()
+        case _:
+            raise ValueError(f"Invalid type: {match_target}")
